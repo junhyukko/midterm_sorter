@@ -41,34 +41,65 @@ while i < dir_size:
     #currently only inspecting first page for which school
     page = doc[0]
     text = page.getText()
+    print(text)
     #if "York" in text:
-    if "York" in text:
+    # if "York University" in text:
+    #     os.chmod(york, stat.S_IWRITE)
+    #     shutil.copy("unsorted/" + unsorted_lst[i], york)
+    # elif "Waterloo" in text:
+    #     os.chmod(waterloo, stat.S_IWRITE)
+    #     shutil.copy("unsorted/" + unsorted_lst[i], waterloo)
+    # elif "Ryerson" in text:
+    #     os.chmod(ryerson, stat.S_IWRITE)
+    #     shutil.copy("unsorted/" + unsorted_lst[i], ryerson)
+    # #currently I believe this college is in Guelph
+    # elif "Guelph" or "D2L login" in text:
+    #     os.chmod(guelph, stat.S_IWRITE)
+    #     shutil.copy("unsorted/" + unsorted_lst[i], guelph)
+    # elif "McMaster" in text:
+    #     os.chmod(mcmaster, stat.S_IWRITE)
+    #     shutil.copy("unsorted/" + unsorted_lst[i], mcmaster)
+    # elif "Western" in text:
+    #     os.chmod(western, stat.S_IWRITE)
+    #     shutil.copy("unsorted/" + unsorted_lst[i], western)
+    # #oxdia files are also U of T midterms but adding "-oxdia" at the end to signify that it has watermark
+    # elif "www.oxdia.com" in text:
+    #     os.chmod(uoft, stat.S_IWRITE)
+    #     shutil.copy("unsorted/" + unsorted_lst[i], uoft + " Oxdia")
+    # #accounting for Rotman Commerce that may not include the U of T in it
+    # elif "University of Toronto" or "Rotman" in text:
+    #     os.chmod(uoft, stat.S_IWRITE)
+    #     shutil.copy("unsorted/" + unsorted_lst[i], uoft)
+
+    if text.find("York University") != -1:
         os.chmod(york, stat.S_IWRITE)
         shutil.copy("unsorted/" + unsorted_lst[i], york)
-    elif "Waterloo" in text:
+    elif text.find("Waterloo") != -1:
         os.chmod(waterloo, stat.S_IWRITE)
         shutil.copy("unsorted/" + unsorted_lst[i], waterloo)
-    elif "Ryerson" in text:
+    elif text.find("Ryerson") != -1:
         os.chmod(ryerson, stat.S_IWRITE)
         shutil.copy("unsorted/" + unsorted_lst[i], ryerson)
     #currently I believe this college is in Guelph
-    elif "Guelph" or "College of Business and Economics" in text:
+    elif text.find("Guelph") != -1 or text.find("D2L login") != -1:
         os.chmod(guelph, stat.S_IWRITE)
         shutil.copy("unsorted/" + unsorted_lst[i], guelph)
-    elif "McMaster" in text:
+    elif text.find("McMaster") != -1:
         os.chmod(mcmaster, stat.S_IWRITE)
         shutil.copy("unsorted/" + unsorted_lst[i], mcmaster)
-    elif "Western" in text:
+    elif text.find("Western") != -1:
         os.chmod(western, stat.S_IWRITE)
         shutil.copy("unsorted/" + unsorted_lst[i], western)
-    #accounting for Rotman Commerce that may not include the U of T in it
-    elif "Toronto"or "Rotman" in text:
-        os.chmod(uoft, stat.S_IWRITE)
-        shutil.copy("unsorted/" + unsorted_lst[i], uoft)
     #oxdia files are also U of T midterms but adding "-oxdia" at the end to signify that it has watermark
-    elif "www.oxdia.com" in text:
+    #might need to remove this one
+    elif text.find("www.oxdia.com") != -1:
         os.chmod(uoft, stat.S_IWRITE)
         shutil.copy("unsorted/" + unsorted_lst[i], uoft + " Oxdia")
+    #accounting for Rotman Commerce that may not include the U of T in it
+    elif text.find("University of Toronto") != -1 or text.find("Rotman") != -1:
+        os.chmod(uoft, stat.S_IWRITE)
+        shutil.copy("unsorted/" + unsorted_lst[i], uoft)
+    
     i += 1
 
 
